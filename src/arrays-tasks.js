@@ -310,8 +310,9 @@ function flattenArray(nestedArray) {
  *   selectMany([[1, 2], [3, 4], [5, 6]], (x) => x) =>   [ 1, 2, 3, 4, 5, 6 ]
  *   selectMany(['one','two','three'], (x) => x.split('')) =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  // throw new Error('Not implemented');
+  return childrenSelector(arr.flat(Infinity));
 }
 
 /**
@@ -359,8 +360,9 @@ function createChunks(/* arr, chunkSize */) {
  *    generateOdds(2) => [ 1, 3 ]
  *    generateOdds(5) => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  // throw new Error('Not implemented');
+  return Array.from({ length: len }, (_, index) => 2 * index + 1);
 }
 
 /**
@@ -391,8 +393,10 @@ function getElementByIndices(/* arr, indices */) {
  *  getFalsyValuesCount([ -1, 'false', null, 0 ]) => 2
  *  getFalsyValuesCount([ null, undefined, NaN, false, 0, '' ]) => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  // throw new Error('Not implemented');
+  const arrFalsyValues = arr.filter((item) => Boolean(!item));
+  return arrFalsyValues.length;
 }
 
 /**
@@ -428,8 +432,9 @@ function getIdentityMatrix(/* n */) {
  *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIndicesOfOddNumbers(/* numbers */) {
-  throw new Error('Not implemented');
+function getIndicesOfOddNumbers(numbers) {
+  // throw new Error('Not implemented');
+  return numbers.filter((item, index) => (item % 2 !== 0 ? index : null));
 }
 
 /**
@@ -566,8 +571,19 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  // throw new Error('Not implemented');
+  const middleIndex = arr.length % 2 !== 0 ? (arr.length - 1) / 2 : 0;
+  const head = middleIndex
+    ? arr.slice(0, middleIndex)
+    : arr.slice(0, arr.length / 2);
+  const tail = middleIndex
+    ? arr.slice(middleIndex + 1)
+    : arr.slice(arr.length / 2);
+  const result = middleIndex
+    ? tail.concat(arr[middleIndex], head)
+    : tail.concat(head);
+  return result;
 }
 
 module.exports = {

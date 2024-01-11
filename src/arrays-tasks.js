@@ -312,9 +312,7 @@ function flattenArray(nestedArray) {
  */
 function selectMany(arr, childrenSelector) {
   // throw new Error('Not implemented');
-  const result = [];
-  arr.map((item) => result.push(childrenSelector(item)));
-  return result.flat();
+  return arr.flatMap((item) => childrenSelector(item));
 }
 
 /**

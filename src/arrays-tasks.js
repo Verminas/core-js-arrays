@@ -530,18 +530,16 @@ function findCommonElements(arr1, arr2) {
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
 function findLongestIncreasingSubsequence(nums) {
-  const lengths = nums.map(() => 1);
+  const helper = (index, currentCount, maxCount) => {
+    if (index === nums.length) {
+      return maxCount;
+    }
+    const nextCount = nums[index] < nums[index + 1] ? currentCount + 1 : 1;
+    const newMaxCount = Math.max(maxCount, nextCount);
 
-  lengths.map((length, i) => {
-    return nums.slice(0, i).reduce((maxLength, num, j) => {
-      return Math.max(
-        maxLength,
-        nums[j] < nums[i] ? lengths[j] + 1 : lengths[j]
-      );
-    }, 1);
-  });
-
-  return Math.max(...lengths);
+    return helper(index + 1, nextCount, newMaxCount);
+  };
+  return helper(0, 1, 1);
 }
 
 /**

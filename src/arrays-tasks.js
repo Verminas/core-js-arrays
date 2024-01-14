@@ -453,7 +453,11 @@ function getIdentityMatrix(n) {
  */
 function getIndicesOfOddNumbers(numbers) {
   // throw new Error('Not implemented');
-  return numbers.filter((item, index) => (item % 2 !== 0 ? index : null));
+  return numbers
+    .map((item, index) => {
+      return item % 2 !== 0 ? index : undefined;
+    })
+    .filter((index) => index !== undefined);
 }
 
 /**

@@ -391,9 +391,9 @@ function generateOdds(len) {
  */
 function getElementByIndices(arr, indices) {
   // throw new Error('Not implemented');
-  const newIndices = indices.map((item) => [].push(item));
-  const arrInd = [arr, newIndices];
-  return arrInd.flat().join('');
+  return indices.length === 1
+    ? arr[indices]
+    : arr.flat(indices.length)[indices.at(-1)];
 }
 
 /**
